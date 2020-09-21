@@ -1,0 +1,11 @@
+C:\Users\ferre\Desktop\Davinci\Plataformas de desarrollo\AbovePremiere-Ferreyra\AbovePremiere-Ferreyra\bin\Debug\AbovePremiere-Ferreyra.exe.config
+C:\Users\ferre\Desktop\Davinci\Plataformas de desarrollo\AbovePremiere-Ferreyra\AbovePremiere-Ferreyra\bin\Debug\AbovePremiere-Ferreyra.exe
+C:\Users\ferre\Desktop\Davinci\Plataformas de desarrollo\AbovePremiere-Ferreyra\AbovePremiere-Ferreyra\bin\Debug\AbovePremiere-Ferreyra.pdb
+C:\Users\ferre\Desktop\Davinci\Plataformas de desarrollo\AbovePremiere-Ferreyra\AbovePremiere-Ferreyra\obj\Debug\AbovePremiere-Ferreyra.csprojAssemblyReference.cache
+C:\Users\ferre\Desktop\Davinci\Plataformas de desarrollo\AbovePremiere-Ferreyra\AbovePremiere-Ferreyra\obj\Debug\AbovePremiere_Ferreyra.Properties.Resources.resources
+C:\Users\ferre\Desktop\Davinci\Plataformas de desarrollo\AbovePremiere-Ferreyra\AbovePremiere-Ferreyra\obj\Debug\AbovePremiere_Ferreyra.Login.resources
+C:\Users\ferre\Desktop\Davinci\Plataformas de desarrollo\AbovePremiere-Ferreyra\AbovePremiere-Ferreyra\obj\Debug\AbovePremiere-Ferreyra.csproj.GenerateResource.cache
+C:\Users\ferre\Desktop\Davinci\Plataformas de desarrollo\AbovePremiere-Ferreyra\AbovePremiere-Ferreyra\obj\Debug\AbovePremiere-Ferreyra.csproj.CoreCompileInputs.cache
+C:\Users\ferre\Desktop\Davinci\Plataformas de desarrollo\AbovePremiere-Ferreyra\AbovePremiere-Ferreyra\obj\Debug\AbovePremiere-Ferreyra.exe
+C:\Users\ferre\Desktop\Davinci\Plataformas de desarrollo\AbovePremiere-Ferreyra\AbovePremiere-Ferreyra\obj\Debug\AbovePremiere-Ferreyra.pdb
+C:\Users\ferre\Desktop\Davinci\Plataformas de desarrollo\AbovePremiere-Ferreyra\AbovePremiere-Ferreyra\obj\Debug\AbovePremiere_Ferreyra.Vistas.AbovePremiere.resources
