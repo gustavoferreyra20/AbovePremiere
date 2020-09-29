@@ -47,6 +47,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAOs\UsuariosDAO.cs" />
+    <Compile Include="FFMPEG\ffmpegHandler.cs" />
+    <Compile Include="Modelo\Consola.cs" />
     <Compile Include="Modelo\Usuario.cs" />
     <Compile Include="Vistas\AbovePremiere.cs">
       <SubType>Form</SubType>
@@ -90,8 +92,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="FFMPEG\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
