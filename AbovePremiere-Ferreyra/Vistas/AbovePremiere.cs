@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,23 +15,35 @@ namespace AbovePremiere_Ferreyra.Vistas
 {
     public partial class AbovePremiere : Form
     {
-        private String direccionArchivo;
-        private String destinoArchivo;
-        private String nombreArchivo;
-
+        private string direccionArchivo;
+        private string destinoArchivo;
+        private string nombreArchivo;
+        private string archivo;
+        private bool archivoSeleccionado = false;
 
         public AbovePremiere()
         {
             InitializeComponent();
-            CargarFormatos();
+            cargarFormatos();
+            cargarResoluciones();
         }
 
-        public void CargarFormatos()
+        public void cargarFormatos()
         {
             _ = this.cbxformatos.Items.Add(".mp4");
             _ = this.cbxformatos.Items.Add(".avi");
             _ = this.cbxformatos.Items.Add(".mpeg");
             _ = this.cbxformatos.Items.Add(".flv");
+        }
+
+        public void cargarResoluciones()
+        {
+            _ = this.cbxresoluciones.Items.Add("1920x1080");
+            _ = this.cbxresoluciones.Items.Add("1280x720");
+            _ = this.cbxresoluciones.Items.Add("1024x576");
+            _ = this.cbxresoluciones.Items.Add("768x432");
+            _ = this.cbxresoluciones.Items.Add("512x288");
+            _ = this.cbxresoluciones.Items.Add("256x144 ");
         }
 
         private void txtbuscarArchivo_Click(object sender, EventArgs e)
@@ -40,39 +53,91 @@ namespace AbovePremiere_Ferreyra.Vistas
 
             if (result == DialogResult.OK) 
             {
+                this.archivo = opdbuscador.SafeFileName;
                 this.direccionArchivo = opdbuscador.FileName;
-                this.nombreArchivo = System.IO.Path.GetFileNameWithoutExtension(this.direccionArchivo);
-                this.lblnombreArchivo.Text = nombreArchivo;
+                this.nombreArchivo = Path.GetFileNameWithoutExtension(this.direccionArchivo);
+                this.lblnombreArchivo.Text = this.nombreArchivo;
+                this.archivoSeleccionado = true;
             }
         }
 
         private void btnconvertirVideo_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(this.opdbuscador.FileName))
+            if (!this.archivoSeleccionado)
             {
                 MessageBox.Show("Debe seleccionar un archivo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                guardarArchivo();
-                ffmpegHandler.cambiarFormato(this.direccionArchivo, this.destinoArchivo + "\\" + this.nombreArchivo + this.cbxformatos.Text);
+                guardarArchivo(this.nombreArchivo + this.cbxformatos.Text);
+                ffmpegHandler.cambiarFormato(this.direccionArchivo, this.destinoArchivo);
+                reiniciarFfmpeg();
             }
 
         }
 
-        private void guardarArchivo()
+        private void btndescargarVideo_Click(object sender, EventArgs e)
+        {
+            if (!this.archivoSeleccionado)
+            {
+                MessageBox.Show("Debe seleccionar un archivo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                guardarArchivo(this.archivo);
+                ffmpegHandler.cambiarResolucion(this.direccionArchivo, this.cbxresoluciones.Text.Replace("x", ":"), this.destinoArchivo);
+                //sobreEscribir(this.destinoArchivo);
+                reiniciarFfmpeg();
+            }
+        }
+
+        private void btnguardarCapturas_Click(object sender, EventArgs e)
+        {
+            if (!this.archivoSeleccionado)
+            {
+                MessageBox.Show("Debe seleccionar un archivo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                guardarArchivo("image-%04d.jpg");
+                ffmpegHandler.sacarCapturas(this.direccionArchivo, this.numFrames.Value, this.destinoArchivo);
+                reiniciarFfmpeg();
+            }
+        }
+
+        private void sobreEscribir(string archivo)
+        {
+            if (File.Exists(archivo))
+            {
+                DialogResult dialogResult = MessageBox.Show("Sobreescribir archivo?", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    ffmpegHandler.sobreEscribir("y");
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    ffmpegHandler.sobreEscribir("n");
+                }
+            }
+        }
+
+        private void reiniciarFfmpeg()
+        {
+            this.direccionArchivo = null;
+            this.nombreArchivo = null;
+            this.lblnombreArchivo.Text = null;
+            this.archivoSeleccionado = false;
+        }
+
+        private void guardarArchivo(string archivo)
         {
             DialogResult result = fbdbajar.ShowDialog();
 
             if (result == DialogResult.OK)
             {
-                this.destinoArchivo = fbdbajar.SelectedPath;
+                this.destinoArchivo = fbdbajar.SelectedPath + "\\" + archivo;
+                
             }
-        }
-
-        private void folderBrowserDialog1_HelpRequest(object sender, EventArgs e)
-        {
-
         }
     }
 }

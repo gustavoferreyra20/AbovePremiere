@@ -34,7 +34,7 @@
             this.lblnombreArchivo = new System.Windows.Forms.Label();
             this.tabextraerImg = new System.Windows.Forms.TabPage();
             this.btnguardarCapturas = new System.Windows.Forms.Button();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.numFrames = new System.Windows.Forms.NumericUpDown();
             this.lblcapturas = new System.Windows.Forms.Label();
             this.tabcambiarRel = new System.Windows.Forms.TabPage();
             this.btndescargarVideo = new System.Windows.Forms.Button();
@@ -42,16 +42,19 @@
             this.lblseleccionarResolucion = new System.Windows.Forms.Label();
             this.tabconvertir = new System.Windows.Forms.TabPage();
             this.btnconvertirVideo = new System.Windows.Forms.Button();
-            this.cbxeliminarAudio = new System.Windows.Forms.CheckBox();
             this.cbxformatos = new System.Windows.Forms.ComboBox();
             this.lblseleccionarFormato = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabaudio = new System.Windows.Forms.TabPage();
+            this.btnremover = new System.Windows.Forms.Button();
+            this.btnextraer = new System.Windows.Forms.Button();
             this.fbdbajar = new System.Windows.Forms.FolderBrowserDialog();
             this.tabextraerImg.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numFrames)).BeginInit();
             this.tabcambiarRel.SuspendLayout();
             this.tabconvertir.SuspendLayout();
             this.tabControl1.SuspendLayout();
+            this.tabaudio.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblSeleccionarArchivo
@@ -74,7 +77,7 @@
             this.txtbuscarArchivo.Name = "txtbuscarArchivo";
             this.txtbuscarArchivo.Size = new System.Drawing.Size(75, 23);
             this.txtbuscarArchivo.TabIndex = 3;
-            this.txtbuscarArchivo.Text = "buscar ";
+            this.txtbuscarArchivo.Text = "Buscar ";
             this.txtbuscarArchivo.UseVisualStyleBackColor = true;
             this.txtbuscarArchivo.Click += new System.EventHandler(this.txtbuscarArchivo_Click);
             // 
@@ -89,7 +92,7 @@
             // tabextraerImg
             // 
             this.tabextraerImg.Controls.Add(this.btnguardarCapturas);
-            this.tabextraerImg.Controls.Add(this.numericUpDown1);
+            this.tabextraerImg.Controls.Add(this.numFrames);
             this.tabextraerImg.Controls.Add(this.lblcapturas);
             this.tabextraerImg.Location = new System.Drawing.Point(4, 22);
             this.tabextraerImg.Name = "tabextraerImg";
@@ -107,22 +110,23 @@
             this.btnguardarCapturas.TabIndex = 2;
             this.btnguardarCapturas.Text = "Guardar capturas";
             this.btnguardarCapturas.UseVisualStyleBackColor = true;
+            this.btnguardarCapturas.Click += new System.EventHandler(this.btnguardarCapturas_Click);
             // 
-            // numericUpDown1
+            // numFrames
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(124, 12);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDown1.TabIndex = 1;
+            this.numFrames.Location = new System.Drawing.Point(123, 12);
+            this.numFrames.Name = "numFrames";
+            this.numFrames.Size = new System.Drawing.Size(120, 20);
+            this.numFrames.TabIndex = 1;
             // 
             // lblcapturas
             // 
             this.lblcapturas.AutoSize = true;
             this.lblcapturas.Location = new System.Drawing.Point(6, 14);
             this.lblcapturas.Name = "lblcapturas";
-            this.lblcapturas.Size = new System.Drawing.Size(112, 13);
+            this.lblcapturas.Size = new System.Drawing.Size(111, 13);
             this.lblcapturas.TabIndex = 0;
-            this.lblcapturas.Text = "Frames entre capturas";
+            this.lblcapturas.Text = "Capturas por segundo";
             // 
             // tabcambiarRel
             // 
@@ -145,6 +149,7 @@
             this.btndescargarVideo.TabIndex = 4;
             this.btndescargarVideo.Text = "Descargar video";
             this.btndescargarVideo.UseVisualStyleBackColor = true;
+            this.btndescargarVideo.Click += new System.EventHandler(this.btndescargarVideo_Click);
             // 
             // cbxresoluciones
             // 
@@ -167,7 +172,6 @@
             // tabconvertir
             // 
             this.tabconvertir.Controls.Add(this.btnconvertirVideo);
-            this.tabconvertir.Controls.Add(this.cbxeliminarAudio);
             this.tabconvertir.Controls.Add(this.cbxformatos);
             this.tabconvertir.Controls.Add(this.lblseleccionarFormato);
             this.tabconvertir.Location = new System.Drawing.Point(4, 22);
@@ -187,16 +191,6 @@
             this.btnconvertirVideo.Text = "Convertir video";
             this.btnconvertirVideo.UseVisualStyleBackColor = true;
             this.btnconvertirVideo.Click += new System.EventHandler(this.btnconvertirVideo_Click);
-            // 
-            // cbxeliminarAudio
-            // 
-            this.cbxeliminarAudio.AutoSize = true;
-            this.cbxeliminarAudio.Location = new System.Drawing.Point(113, 57);
-            this.cbxeliminarAudio.Name = "cbxeliminarAudio";
-            this.cbxeliminarAudio.Size = new System.Drawing.Size(91, 17);
-            this.cbxeliminarAudio.TabIndex = 4;
-            this.cbxeliminarAudio.Text = "Eliminar audio";
-            this.cbxeliminarAudio.UseVisualStyleBackColor = true;
             // 
             // cbxformatos
             // 
@@ -221,15 +215,42 @@
             this.tabControl1.Controls.Add(this.tabconvertir);
             this.tabControl1.Controls.Add(this.tabcambiarRel);
             this.tabControl1.Controls.Add(this.tabextraerImg);
+            this.tabControl1.Controls.Add(this.tabaudio);
             this.tabControl1.Location = new System.Drawing.Point(15, 60);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(484, 142);
             this.tabControl1.TabIndex = 5;
             // 
-            // fbdbajar
+            // tabaudio
             // 
-            this.fbdbajar.HelpRequest += new System.EventHandler(this.folderBrowserDialog1_HelpRequest);
+            this.tabaudio.Controls.Add(this.btnremover);
+            this.tabaudio.Controls.Add(this.btnextraer);
+            this.tabaudio.Location = new System.Drawing.Point(4, 22);
+            this.tabaudio.Name = "tabaudio";
+            this.tabaudio.Padding = new System.Windows.Forms.Padding(3);
+            this.tabaudio.Size = new System.Drawing.Size(476, 116);
+            this.tabaudio.TabIndex = 4;
+            this.tabaudio.Text = "Audio";
+            this.tabaudio.UseVisualStyleBackColor = true;
+            // 
+            // btnremover
+            // 
+            this.btnremover.Location = new System.Drawing.Point(200, 59);
+            this.btnremover.Name = "btnremover";
+            this.btnremover.Size = new System.Drawing.Size(75, 23);
+            this.btnremover.TabIndex = 1;
+            this.btnremover.Text = "Remover";
+            this.btnremover.UseVisualStyleBackColor = true;
+            // 
+            // btnextraer
+            // 
+            this.btnextraer.Location = new System.Drawing.Point(184, 30);
+            this.btnextraer.Name = "btnextraer";
+            this.btnextraer.Size = new System.Drawing.Size(107, 23);
+            this.btnextraer.TabIndex = 0;
+            this.btnextraer.Text = "Extraer a mp3";
+            this.btnextraer.UseVisualStyleBackColor = true;
             // 
             // AbovePremiere
             // 
@@ -245,12 +266,13 @@
             this.Text = "Above Premiere";
             this.tabextraerImg.ResumeLayout(false);
             this.tabextraerImg.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numFrames)).EndInit();
             this.tabcambiarRel.ResumeLayout(false);
             this.tabcambiarRel.PerformLayout();
             this.tabconvertir.ResumeLayout(false);
             this.tabconvertir.PerformLayout();
             this.tabControl1.ResumeLayout(false);
+            this.tabaudio.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -265,17 +287,19 @@
         private System.Windows.Forms.TabPage tabextraerImg;
         private System.Windows.Forms.TabPage tabcambiarRel;
         private System.Windows.Forms.TabPage tabconvertir;
-        private System.Windows.Forms.CheckBox cbxeliminarAudio;
         private System.Windows.Forms.ComboBox cbxformatos;
         private System.Windows.Forms.Label lblseleccionarFormato;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.Label lblseleccionarResolucion;
         private System.Windows.Forms.ComboBox cbxresoluciones;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown numFrames;
         private System.Windows.Forms.Label lblcapturas;
         private System.Windows.Forms.Button btnguardarCapturas;
         private System.Windows.Forms.Button btndescargarVideo;
         private System.Windows.Forms.Button btnconvertirVideo;
         private System.Windows.Forms.FolderBrowserDialog fbdbajar;
+        private System.Windows.Forms.TabPage tabaudio;
+        private System.Windows.Forms.Button btnremover;
+        private System.Windows.Forms.Button btnextraer;
     }
 }
