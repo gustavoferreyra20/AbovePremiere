@@ -21,6 +21,8 @@ namespace AbovePremiere_Ferreyra.Vistas
         private string archivo;
         private bool archivoSeleccionado = false;
 
+        public string comandoSobreEscribir { get; private set; }
+
         public AbovePremiere()
         {
             InitializeComponent();
@@ -69,8 +71,11 @@ namespace AbovePremiere_Ferreyra.Vistas
             }
             else
             {
-                guardarArchivo(this.nombreArchivo + this.cbxformatos.Text);
-                ffmpegHandler.cambiarFormato(this.direccionArchivo, this.destinoArchivo);
+                ElegirRuta(this.nombreArchivo + this.cbxformatos.Text);
+                if (rutaDisponible(this.destinoArchivo))
+                {
+                    ffmpegHandler.cambiarFormato(this.direccionArchivo, this.destinoArchivo);
+                }
                 reiniciarFfmpeg();
             }
 
@@ -84,9 +89,11 @@ namespace AbovePremiere_Ferreyra.Vistas
             }
             else
             {
-                guardarArchivo(this.archivo);
-                ffmpegHandler.cambiarResolucion(this.direccionArchivo, this.cbxresoluciones.Text.Replace("x", ":"), this.destinoArchivo);
-                //sobreEscribir(this.destinoArchivo);
+                ElegirRuta(this.archivo);
+                if (rutaDisponible(this.destinoArchivo))
+                {
+                   ffmpegHandler.cambiarResolucion(this.direccionArchivo, this.cbxresoluciones.Text.Replace("x", ":"), this.destinoArchivo);
+                }
                 reiniciarFfmpeg();
             }
         }
@@ -99,25 +106,29 @@ namespace AbovePremiere_Ferreyra.Vistas
             }
             else
             {
-                guardarArchivo("image-%04d.jpg");
+                ElegirRuta("image-%04d.jpg");
                 ffmpegHandler.sacarCapturas(this.direccionArchivo, this.numFrames.Value, this.destinoArchivo);
-                reiniciarFfmpeg();
+                
             }
         }
 
-        private void sobreEscribir(string archivo)
+        private bool rutaDisponible(string ruta)
         {
-            if (File.Exists(archivo))
+            if (File.Exists(ruta))
             {
                 DialogResult dialogResult = MessageBox.Show("Sobreescribir archivo?", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    ffmpegHandler.sobreEscribir("y");
+                    return true;
                 }
-                else if (dialogResult == DialogResult.No)
+                else
                 {
-                    ffmpegHandler.sobreEscribir("n");
+                    return false;
                 }
+            }
+            else
+            {
+                return true;
             }
         }
 
@@ -129,15 +140,16 @@ namespace AbovePremiere_Ferreyra.Vistas
             this.archivoSeleccionado = false;
         }
 
-        private void guardarArchivo(string archivo)
+        private void ElegirRuta(string archivo)
         {
             DialogResult result = fbdbajar.ShowDialog();
-
             if (result == DialogResult.OK)
             {
-                this.destinoArchivo = fbdbajar.SelectedPath + "\\" + archivo;
-                
+               
+               this.destinoArchivo = fbdbajar.SelectedPath + "\\" + archivo;
+               
             }
+                       
         }
     }
 }

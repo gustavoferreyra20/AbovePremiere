@@ -16,19 +16,19 @@ namespace AbovePremiere_Ferreyra.FFMPEG
 
         public static void cambiarFormato(String entrada, String salida)
         {
-            consola.usarConsola(@"ffmpeg -i " + entreComillas(entrada) + " " + entreComillas(salida));
+            consola.usarConsola(@"ffmpeg -i " + entreComillas(entrada) + " -y " + entreComillas(salida));
         }
 
-        public static void cambiarResolucion(String archivo, String resolucionDeleccionada, String salida)
+        public static void cambiarResolucion(String entrada, String resolucionDeleccionada, String salida)
         {
-            consola.usarConsola(@"ffmpeg -i " + entreComillas(archivo) + " -vf scale=" + resolucionDeleccionada + " " + entreComillas(salida));
+            consola.usarConsola(@"ffmpeg -i " + entreComillas(entrada) + " -vf scale=" + resolucionDeleccionada + " -y " + entreComillas(salida));
         }
 
-        public static void sacarCapturas(String entrada, decimal frames, String salida)
+        public static void sacarCapturas(String entrada, decimal framesDecimales, String salida)
         {
-            decimal framesDecimales = frames;
             string framesString = framesDecimales.ToString(CultureInfo.InvariantCulture);
-            consola.usarConsola(@"ffmpeg -i " + entreComillas(entrada) + " -vf fps=" + framesString + " " + entreComillas(salida));
+            consola.usarConsola(@"ffmpeg -i " + entreComillas(entrada) + " -vf fps=" + framesString + " -y " + entreComillas(salida));
+            Console.WriteLine(@"ffmpeg -i " + entreComillas(entrada) + " -vf fps=" + framesString + " -y " + entreComillas(salida));
         }
 
         public static void eliminarAudio(String archivo, String framesEntreCapturas)
@@ -41,9 +41,5 @@ namespace AbovePremiere_Ferreyra.FFMPEG
             return '"' + direccionBase + '"';
         }
 
-        internal static void sobreEscribir(string respuesta)
-        {
-            consola.usarConsola(@"" + respuesta);
-        }
     }
 }
