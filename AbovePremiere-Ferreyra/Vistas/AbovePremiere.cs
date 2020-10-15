@@ -20,8 +20,9 @@ namespace AbovePremiere_Ferreyra.Vistas
         private string nombreArchivo;
         private string archivo;
         private bool archivoSeleccionado = false;
+        private string[] formatosValidos = new[] { ".mp4", ".avi", ".mpeg", ".flv" };
+        private string[] resolucionesValidas = new[] { "1920x1080", "1280x720", "1024x576", "768x432", "512x288", "256x144" };
 
-        public string comandoSobreEscribir { get; private set; }
 
         public AbovePremiere()
         {
@@ -32,20 +33,19 @@ namespace AbovePremiere_Ferreyra.Vistas
 
         public void cargarFormatos()
         {
-            _ = this.cbxformatos.Items.Add(".mp4");
-            _ = this.cbxformatos.Items.Add(".avi");
-            _ = this.cbxformatos.Items.Add(".mpeg");
-            _ = this.cbxformatos.Items.Add(".flv");
+            foreach(string formato in formatosValidos)
+            {
+                _ = this.cbxformatos.Items.Add(formato);
+            }
         }
 
         public void cargarResoluciones()
         {
-            _ = this.cbxresoluciones.Items.Add("1920x1080");
-            _ = this.cbxresoluciones.Items.Add("1280x720");
-            _ = this.cbxresoluciones.Items.Add("1024x576");
-            _ = this.cbxresoluciones.Items.Add("768x432");
-            _ = this.cbxresoluciones.Items.Add("512x288");
-            _ = this.cbxresoluciones.Items.Add("256x144 ");
+            foreach (string resolucion in resolucionesValidas)
+            {
+                _ = this.cbxresoluciones.Items.Add(resolucion);
+            }
+
         }
 
         private void txtbuscarArchivo_Click(object sender, EventArgs e)
@@ -72,7 +72,7 @@ namespace AbovePremiere_Ferreyra.Vistas
             else
             {
                 ElegirRuta(this.nombreArchivo + this.cbxformatos.Text);
-                if (rutaDisponible(this.destinoArchivo))
+                if (rutaDisponible(this.direccionArchivo, this.destinoArchivo))
                 {
                     ffmpegHandler.cambiarFormato(this.direccionArchivo, this.destinoArchivo);
                 }
@@ -90,7 +90,7 @@ namespace AbovePremiere_Ferreyra.Vistas
             else
             {
                 ElegirRuta(this.archivo);
-                if (rutaDisponible(this.destinoArchivo))
+                if (rutaDisponible(this.direccionArchivo, this.destinoArchivo))
                 {
                    ffmpegHandler.cambiarResolucion(this.direccionArchivo, this.cbxresoluciones.Text.Replace("x", ":"), this.destinoArchivo);
                 }
@@ -112,19 +112,17 @@ namespace AbovePremiere_Ferreyra.Vistas
             }
         }
 
-        private bool rutaDisponible(string ruta)
+        private bool rutaDisponible(string archivo, string ruta)
         {
-            if (File.Exists(ruta))
+            if (archivo == ruta)
+            {
+                MessageBox.Show("No se puede sobreescribir el archivo base", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            else if (File.Exists(ruta))
             {
                 DialogResult dialogResult = MessageBox.Show("Sobreescribir archivo?", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return (dialogResult == DialogResult.Yes) ? true : false;
             }
             else
             {

@@ -15,9 +15,9 @@ namespace AbovePremiere_Ferreyra.DAOs
 
         public static void iniciar()
         {
-            listaUsuarios.Add(new Usuario("usuario1", "usuario1"));
-            listaUsuarios.Add(new Usuario("usuario2", "usuario2"));
-            listaUsuarios.Add(new Usuario("usuario3", "usuario3"));
+            listaUsuarios.Add(new Usuario("usuario1@gmail.com", "usuario1"));
+            listaUsuarios.Add(new Usuario("usuario2@gmail.com", "usuario2"));
+            listaUsuarios.Add(new Usuario("usuario3@gmail.com", "usuario3"));
         }
 
         public static bool existeUsuario(String usuario, string password)
@@ -25,14 +25,7 @@ namespace AbovePremiere_Ferreyra.DAOs
 
             var usuarioEncontrado = listaUsuarios.Find(usuarioObj => usuarioObj.usuario == usuario && usuarioObj.password == password);
 
-            if(usuarioEncontrado == null)
-            {
-                return true;
-            }
-            else
-            {
-                return true;
-            }
+            return (usuarioEncontrado != null) ? true : false;
 
             // Llamado a la API
         }

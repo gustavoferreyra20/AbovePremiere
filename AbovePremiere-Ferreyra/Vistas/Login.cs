@@ -21,33 +21,69 @@ namespace AbovePremiere_Ferreyra
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-
-            var usuario = txtUsuario.Text;
-            var password = txtPassword.Text;
-
-            /*
-              Validacion de input del usuario:
-                - Campos !- vacio
-                - si yo pido un email, checkear que me hayan escrito un email
-                - catcheo de caracteres especiales
-            */
-
-            // Existe usuario con esas credenciales
-
-            if(UsuariosDAO.existeUsuario(usuario, password))
+            if (String.IsNullOrEmpty(txtUsuario.Text) || String.IsNullOrEmpty(txtPassword.Text))
             {
-                var form = new AbovePremiere();
-                this.Hide();
-                form.Show();
+                MessageBox.Show("Tiene que ingresar todos los campos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                MessageBox.Show("Usuario inexistente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                var email = txtUsuario.Text;
+                var password = txtPassword.Text;
+
+                if (!IsValidEmail(email))
+                {
+
+                    MessageBox.Show("Correo incorrecto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+                else
+                {
+
+                    if (UsuariosDAO.existeUsuario(email, password))
+                    {
+                        var form = new AbovePremiere();
+                        this.Hide();
+                        form.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Usuario inexistente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
 
-            // Si existe -> Pasa a form 2
-            // Si no existe -> Arrojo Cartel de error
         }
 
+        private bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        private void txtUsuario_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                txtPassword.Focus();
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void txtPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnLogin_Click(this, new EventArgs());
+                e.SuppressKeyPress = true;
+            }
+        }
     }
 }

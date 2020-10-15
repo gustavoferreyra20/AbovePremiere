@@ -22,6 +22,7 @@ namespace AbovePremiere_Ferreyra.FFMPEG
         public static void cambiarResolucion(String entrada, String resolucionDeleccionada, String salida)
         {
             consola.usarConsola(@"ffmpeg -i " + entreComillas(entrada) + " -vf scale=" + resolucionDeleccionada + " -y " + entreComillas(salida));
+            Console.WriteLine(@"ffmpeg -i " + entreComillas(entrada) + " -vf scale=" + resolucionDeleccionada + " -y " + entreComillas(salida));
         }
 
         public static void sacarCapturas(String entrada, decimal framesDecimales, String salida)
@@ -31,9 +32,14 @@ namespace AbovePremiere_Ferreyra.FFMPEG
             Console.WriteLine(@"ffmpeg -i " + entreComillas(entrada) + " -vf fps=" + framesString + " -y " + entreComillas(salida));
         }
 
-        public static void eliminarAudio(String archivo, String framesEntreCapturas)
+        public static void eliminarAudio(String entrada, String salida)
         {
-            consola.usarConsola(@"md C:\Users\ferre\Desktop\sifuncionaxd2");
+            
+        }
+
+        public static void extraerAudio(String entrada, String salida)
+        {
+
         }
 
         private static String entreComillas(String direccionBase)
