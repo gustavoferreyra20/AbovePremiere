@@ -57,7 +57,7 @@ namespace AbovePremiere_Ferreyra.Vistas
             {
                 this.archivo = opdbuscador.SafeFileName;
                 this.direccionArchivo = opdbuscador.FileName;
-                this.nombreArchivo = Path.GetFileNameWithoutExtension(this.direccionArchivo);
+                this.nombreArchivo = this.direccionArchivo;
                 this.lblnombreArchivo.Text = this.nombreArchivo;
                 this.archivoSeleccionado = true;
             }

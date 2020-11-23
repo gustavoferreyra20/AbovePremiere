@@ -236,11 +236,11 @@
             // 
             // btnremover
             // 
-            this.btnremover.Location = new System.Drawing.Point(200, 59);
+            this.btnremover.Location = new System.Drawing.Point(184, 59);
             this.btnremover.Name = "btnremover";
-            this.btnremover.Size = new System.Drawing.Size(75, 23);
+            this.btnremover.Size = new System.Drawing.Size(107, 23);
             this.btnremover.TabIndex = 1;
-            this.btnremover.Text = "Remover";
+            this.btnremover.Text = "Remover audio";
             this.btnremover.UseVisualStyleBackColor = true;
             // 
             // btnextraer
