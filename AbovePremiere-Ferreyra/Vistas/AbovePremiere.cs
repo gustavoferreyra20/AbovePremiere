@@ -108,7 +108,25 @@ namespace AbovePremiere_Ferreyra.Vistas
             {
                 ElegirRuta("image-%04d.jpg");
                 ffmpegHandler.sacarCapturas(this.direccionArchivo, this.numFrames.Value, this.destinoArchivo);
-                
+                reiniciarFfmpeg();
+
+            }
+        }
+
+        private void btnextraer_Click(object sender, EventArgs e)
+        {
+            if (!this.archivoSeleccionado)
+            {
+                MessageBox.Show("Debe seleccionar un archivo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                ElegirRuta(this.nombreArchivo + ".mp3");
+                if (rutaDisponible(this.direccionArchivo, this.destinoArchivo))
+                {
+                    ffmpegHandler.extraerAudio(this.direccionArchivo, this.destinoArchivo);
+                }
+                reiniciarFfmpeg();
             }
         }
 

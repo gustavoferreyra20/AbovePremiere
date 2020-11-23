@@ -251,6 +251,7 @@
             this.btnextraer.TabIndex = 0;
             this.btnextraer.Text = "Extraer a mp3";
             this.btnextraer.UseVisualStyleBackColor = true;
+            this.btnextraer.Click += new System.EventHandler(this.btnextraer_Click);
             // 
             // AbovePremiere
             // 

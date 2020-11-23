@@ -24,7 +24,7 @@ namespace AbovePremiere_Ferreyra.DAOs
             
             var response = client.Execute(request);
 
-            return JsonConvert.DeserializeObject<string>(response.Content) != "";
+            return (JsonConvert.DeserializeObject<string>(response.Content) != "" && JsonConvert.DeserializeObject<string>(response.Content) != null) ;
         }
     }
 }
