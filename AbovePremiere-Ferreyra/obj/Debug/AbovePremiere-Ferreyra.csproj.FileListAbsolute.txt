@@ -9,3 +9,8 @@ C:\Users\ferre\Desktop\Davinci\Plataformas de desarrollo\AbovePremiere-Ferreyra\
 C:\Users\ferre\Desktop\Davinci\Plataformas de desarrollo\AbovePremiere-Ferreyra\AbovePremiere-Ferreyra\obj\Debug\AbovePremiere-Ferreyra.exe
 C:\Users\ferre\Desktop\Davinci\Plataformas de desarrollo\AbovePremiere-Ferreyra\AbovePremiere-Ferreyra\obj\Debug\AbovePremiere-Ferreyra.pdb
 C:\Users\ferre\Desktop\Davinci\Plataformas de desarrollo\AbovePremiere-Ferreyra\AbovePremiere-Ferreyra\obj\Debug\AbovePremiere_Ferreyra.Vistas.AbovePremiere.resources
+C:\Users\ferre\Desktop\Davinci\Plataformas de desarrollo\AbovePremiere-Ferreyra\AbovePremiere-Ferreyra\bin\Debug\Newtonsoft.Json.dll
+C:\Users\ferre\Desktop\Davinci\Plataformas de desarrollo\AbovePremiere-Ferreyra\AbovePremiere-Ferreyra\bin\Debug\RestSharp.dll
+C:\Users\ferre\Desktop\Davinci\Plataformas de desarrollo\AbovePremiere-Ferreyra\AbovePremiere-Ferreyra\bin\Debug\Newtonsoft.Json.xml
+C:\Users\ferre\Desktop\Davinci\Plataformas de desarrollo\AbovePremiere-Ferreyra\AbovePremiere-Ferreyra\bin\Debug\RestSharp.xml
+C:\Users\ferre\Desktop\Davinci\Plataformas de desarrollo\AbovePremiere-Ferreyra\AbovePremiere-Ferreyra\obj\Debug\AbovePremiere-Ferreyra.csproj.CopyComplete

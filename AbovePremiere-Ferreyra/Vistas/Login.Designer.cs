@@ -32,7 +32,7 @@
             this.txtUsuario = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.lblTitulo = new System.Windows.Forms.Label();
-            this.lblCorreo = new System.Windows.Forms.Label();
+            this.lblUsuario = new System.Windows.Forms.Label();
             this.lblContraseña = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -73,14 +73,14 @@
             this.lblTitulo.TabIndex = 3;
             this.lblTitulo.Text = "Above Premiere";
             // 
-            // lblCorreo
+            // lblUsuario
             // 
-            this.lblCorreo.AutoSize = true;
-            this.lblCorreo.Location = new System.Drawing.Point(54, 72);
-            this.lblCorreo.Name = "lblCorreo";
-            this.lblCorreo.Size = new System.Drawing.Size(75, 13);
-            this.lblCorreo.TabIndex = 4;
-            this.lblCorreo.Text = "Ingrese correo";
+            this.lblUsuario.AutoSize = true;
+            this.lblUsuario.Location = new System.Drawing.Point(54, 72);
+            this.lblUsuario.Name = "lblUsuario";
+            this.lblUsuario.Size = new System.Drawing.Size(79, 13);
+            this.lblUsuario.TabIndex = 4;
+            this.lblUsuario.Text = "Ingrese usuario";
             // 
             // lblContraseña
             // 
@@ -97,7 +97,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(228, 244);
             this.Controls.Add(this.lblContraseña);
-            this.Controls.Add(this.lblCorreo);
+            this.Controls.Add(this.lblUsuario);
             this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtUsuario);
@@ -115,7 +115,7 @@
         private System.Windows.Forms.TextBox txtUsuario;
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Label lblTitulo;
-        private System.Windows.Forms.Label lblCorreo;
+        private System.Windows.Forms.Label lblUsuario;
         private System.Windows.Forms.Label lblContraseña;
     }
 }

@@ -31,41 +31,19 @@ namespace AbovePremiere_Ferreyra
                 var email = txtUsuario.Text;
                 var password = txtPassword.Text;
 
-                if (!IsValidEmail(email))
+
+                if (UsuariosDAO.existeUsuario(email, password))
                 {
-
-                    MessageBox.Show("Correo incorrecto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                    var form = new AbovePremiere();
+                    this.Hide();
+                    form.Show();
                 }
                 else
                 {
-
-                    if (UsuariosDAO.existeUsuario(email, password))
-                    {
-                        var form = new AbovePremiere();
-                        this.Hide();
-                        form.Show();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Usuario inexistente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    MessageBox.Show("Usuario inexistente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
-        }
-
-        private bool IsValidEmail(string email)
-        {
-            try
-            {
-                var addr = new System.Net.Mail.MailAddress(email);
-                return addr.Address == email;
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
         }
 
         private void txtUsuario_KeyDown(object sender, KeyEventArgs e)

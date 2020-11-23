@@ -12,8 +12,6 @@ namespace AbovePremiere_Ferreyra
         [STAThread]
         static void Main()
         {
-            UsuariosDAO.iniciar();
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Login());
