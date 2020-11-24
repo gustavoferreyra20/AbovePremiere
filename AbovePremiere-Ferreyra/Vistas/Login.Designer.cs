@@ -62,6 +62,7 @@
             this.txtPassword.Size = new System.Drawing.Size(100, 20);
             this.txtPassword.TabIndex = 2;
             this.txtPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPassword_KeyDown);
+            this.txtPassword.PasswordChar = '*';
             // 
             // lblTitulo
             // 
@@ -103,6 +104,7 @@
             this.Controls.Add(this.txtUsuario);
             this.Controls.Add(this.btnLogin);
             this.Name = "Login";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
             this.ResumeLayout(false);
             this.PerformLayout();

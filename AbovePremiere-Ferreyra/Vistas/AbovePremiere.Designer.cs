@@ -46,7 +46,7 @@
             this.lblseleccionarFormato = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabaudio = new System.Windows.Forms.TabPage();
-            this.btnremover = new System.Windows.Forms.Button();
+            this.btnmutear = new System.Windows.Forms.Button();
             this.btnextraer = new System.Windows.Forms.Button();
             this.fbdbajar = new System.Windows.Forms.FolderBrowserDialog();
             this.tabextraerImg.SuspendLayout();
@@ -224,7 +224,7 @@
             // 
             // tabaudio
             // 
-            this.tabaudio.Controls.Add(this.btnremover);
+            this.tabaudio.Controls.Add(this.btnmutear);
             this.tabaudio.Controls.Add(this.btnextraer);
             this.tabaudio.Location = new System.Drawing.Point(4, 22);
             this.tabaudio.Name = "tabaudio";
@@ -234,14 +234,15 @@
             this.tabaudio.Text = "Audio";
             this.tabaudio.UseVisualStyleBackColor = true;
             // 
-            // btnremover
+            // btnmutear
             // 
-            this.btnremover.Location = new System.Drawing.Point(184, 59);
-            this.btnremover.Name = "btnremover";
-            this.btnremover.Size = new System.Drawing.Size(107, 23);
-            this.btnremover.TabIndex = 1;
-            this.btnremover.Text = "Remover audio";
-            this.btnremover.UseVisualStyleBackColor = true;
+            this.btnmutear.Location = new System.Drawing.Point(184, 59);
+            this.btnmutear.Name = "btnmutear";
+            this.btnmutear.Size = new System.Drawing.Size(107, 23);
+            this.btnmutear.TabIndex = 1;
+            this.btnmutear.Text = "Mutear";
+            this.btnmutear.UseVisualStyleBackColor = true;
+            this.btnmutear.Click += new System.EventHandler(this.btnmutear_Click);
             // 
             // btnextraer
             // 
@@ -249,7 +250,7 @@
             this.btnextraer.Name = "btnextraer";
             this.btnextraer.Size = new System.Drawing.Size(107, 23);
             this.btnextraer.TabIndex = 0;
-            this.btnextraer.Text = "Extraer a mp3";
+            this.btnextraer.Text = "Convertir a mp3";
             this.btnextraer.UseVisualStyleBackColor = true;
             this.btnextraer.Click += new System.EventHandler(this.btnextraer_Click);
             // 
@@ -263,6 +264,7 @@
             this.Controls.Add(this.txtbuscarArchivo);
             this.Controls.Add(this.lblSeleccionarArchivo);
             this.Name = "AbovePremiere";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Tag = "";
             this.Text = "Above Premiere";
             this.tabextraerImg.ResumeLayout(false);
@@ -300,7 +302,7 @@
         private System.Windows.Forms.Button btnconvertirVideo;
         private System.Windows.Forms.FolderBrowserDialog fbdbajar;
         private System.Windows.Forms.TabPage tabaudio;
-        private System.Windows.Forms.Button btnremover;
+        private System.Windows.Forms.Button btnmutear;
         private System.Windows.Forms.Button btnextraer;
     }
 }

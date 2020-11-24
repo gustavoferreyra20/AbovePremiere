@@ -57,8 +57,8 @@ namespace AbovePremiere_Ferreyra.Vistas
             {
                 this.archivo = opdbuscador.SafeFileName;
                 this.direccionArchivo = opdbuscador.FileName;
-                this.nombreArchivo = this.direccionArchivo;
-                this.lblnombreArchivo.Text = this.nombreArchivo;
+                this.nombreArchivo = Path.GetFileNameWithoutExtension(this.direccionArchivo);
+                this.lblnombreArchivo.Text = Path.GetFileName(this.direccionArchivo);
                 this.archivoSeleccionado = true;
             }
         }
@@ -75,8 +75,9 @@ namespace AbovePremiere_Ferreyra.Vistas
                 if (rutaDisponible(this.direccionArchivo, this.destinoArchivo))
                 {
                     ffmpegHandler.cambiarFormato(this.direccionArchivo, this.destinoArchivo);
+                    MessageBox.Show("Conversion terminada", "Proceso Terminado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    reiniciarFfmpeg();
                 }
-                reiniciarFfmpeg();
             }
 
         }
@@ -92,9 +93,10 @@ namespace AbovePremiere_Ferreyra.Vistas
                 ElegirRuta(this.archivo);
                 if (rutaDisponible(this.direccionArchivo, this.destinoArchivo))
                 {
-                   ffmpegHandler.cambiarResolucion(this.direccionArchivo, this.cbxresoluciones.Text.Replace("x", ":"), this.destinoArchivo);
+                    ffmpegHandler.cambiarResolucion(this.direccionArchivo, this.cbxresoluciones.Text.Replace("x", ":"), this.destinoArchivo);
+                    MessageBox.Show("Descarga completa", "Proceso Terminado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    reiniciarFfmpeg();
                 }
-                reiniciarFfmpeg();
             }
         }
 
@@ -108,6 +110,7 @@ namespace AbovePremiere_Ferreyra.Vistas
             {
                 ElegirRuta("image-%04d.jpg");
                 ffmpegHandler.sacarCapturas(this.direccionArchivo, this.numFrames.Value, this.destinoArchivo);
+                MessageBox.Show("Capturas guardadas", "Proceso Terminado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 reiniciarFfmpeg();
 
             }
@@ -125,8 +128,27 @@ namespace AbovePremiere_Ferreyra.Vistas
                 if (rutaDisponible(this.direccionArchivo, this.destinoArchivo))
                 {
                     ffmpegHandler.extraerAudio(this.direccionArchivo, this.destinoArchivo);
+                    MessageBox.Show("Audio extraido", "Proceso Terminado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    reiniciarFfmpeg();
                 }
-                reiniciarFfmpeg();
+            }
+        }
+
+        private void btnmutear_Click(object sender, EventArgs e)
+        {
+            if (!this.archivoSeleccionado)
+            {
+                MessageBox.Show("Debe seleccionar un archivo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                ElegirRuta(this.archivo);
+                if (rutaDisponible(this.direccionArchivo, this.destinoArchivo))
+                {
+                    ffmpegHandler.mutear(this.direccionArchivo, this.destinoArchivo);
+                    MessageBox.Show("Video muteado", "Proceso Terminado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    reiniciarFfmpeg();
+                }
             }
         }
 

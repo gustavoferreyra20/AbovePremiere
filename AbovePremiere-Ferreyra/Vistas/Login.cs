@@ -34,8 +34,9 @@ namespace AbovePremiere_Ferreyra
 
                 if (UsuariosDAO.existeUsuario(email, password))
                 {
-                    var form = new AbovePremiere();
                     this.Hide();
+                    var form = new AbovePremiere();
+                    form.Closed += (s, args) => this.Close();
                     form.Show();
                 }
                 else

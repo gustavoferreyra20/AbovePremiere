@@ -30,21 +30,19 @@ namespace AbovePremiere_Ferreyra.FFMPEG
             consola.usarConsola(@"ffmpeg -i " + entreComillas(entrada) + " -vf fps=" + framesString + " -y " + entreComillas(salida));
         }
 
-        public static void eliminarAudio(String entrada, String salida)
-        {
-            
-        }
-
         public static void extraerAudio(String entrada, String salida)
         {
             consola.usarConsola(@"ffmpeg -i " + entreComillas(entrada) + " -vn -ar 44100 -ac 2 -ab 192 -f mp3 " + entreComillas(salida));
-            Console.WriteLine(@"ffmpeg -i " + entreComillas(entrada) + " -vn -ar 44100 -ac 2 -ab 192 -f mp3 " + entreComillas(salida));
+        }
+
+        internal static void mutear(String entrada, String salida)
+        {
+            consola.usarConsola(@"ffmpeg -i " + entreComillas(entrada) + " -c copy -an " + entreComillas(salida));
         }
 
         private static String entreComillas(String direccionBase)
         {
             return '"' + direccionBase + '"';
         }
-
     }
 }
